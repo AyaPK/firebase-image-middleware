@@ -1,7 +1,0 @@
-[
-    {
-      "origin": ["https://img.ayasca.dev"],
-      "method": ["GET", "HEAD"],
-      "maxAgeSeconds": 3600
-    }
-  ]
