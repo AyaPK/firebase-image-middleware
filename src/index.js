@@ -81,7 +81,12 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     blobStream.on('finish', async () => {
       try {
         await blob.makePublic();
-        const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
+        let publicUrl;
+        if (process.env.CUSTOM_DOMAIN_URL) {
+          publicUrl = `${process.env.CUSTOM_DOMAIN_URL}/${blob.name}`;
+        } else {
+          publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
+        }
         
         res.status(200).json({
           success: true,
